@@ -2,5 +2,5 @@
 `mvn spring-boot:run`
 
 # Slides are available on: 
-[Github](https://www.dropbox.com/s/hx90r1hvtndppsk/lottery-app-livecoding.pptx?dl=0)
+[Dropbox](https://www.dropbox.com/s/hx90r1hvtndppsk/lottery-app-livecoding.pptx?dl=0)
 
