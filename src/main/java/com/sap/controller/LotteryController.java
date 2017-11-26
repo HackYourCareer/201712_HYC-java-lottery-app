@@ -3,13 +3,19 @@ package com.sap.controller;
 import com.sap.model.Participant;
 import com.sap.repository.ParticipantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 @Controller
@@ -17,8 +23,7 @@ public class LotteryController {
 	@Autowired
 	private ParticipantRepository participantRepository;
 
-	@GetMapping("/")
-
+	@GetMapping({"/", "/welcome", "/home**"})
 	private String welcome() {
 		return "welcome";
 	}
@@ -35,10 +40,18 @@ public class LotteryController {
 	}
 
 	@GetMapping("/participants")
+//	@Secured("ADMIN")
+//	@PreAuthorize("hasAnyRole('ADMIN')")
 	private ModelAndView showParticipants()
 	{
 		final Iterable<Participant> participants = participantRepository.findAll();
-		return new ModelAndView("participants", "participants", participants);
+
+		Participant p1 = new Participant(); p1.setName("aaa"); p1.setSurname("aaa");
+		Participant p2 = new Participant(); p2.setName("bbb"); p2.setSurname("bbb");
+		Participant p3 = new Participant(); p3.setName("ccc"); p3.setSurname("ccc");
+		List<Participant> newParticipants = Arrays.asList(p1, p2, p3);
+
+		return new ModelAndView("participants", "participants", newParticipants);
 	}
 	
 	
