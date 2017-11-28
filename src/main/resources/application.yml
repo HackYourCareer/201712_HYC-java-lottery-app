@@ -1,0 +1,22 @@
+logging.level.org.springframework.security.oauth2.client: debug
+logging.level.org.springframework.security.web.access.ExceptionTranslationFilter: debug
+
+spring:
+  mustache:
+    expose-request-attributes: true
+
+security:
+  oauth2:
+    client:
+      clientId: 1055481837501-oj4takglkqpp8j4h43ga0bd7jktoc8o4.apps.googleusercontent.com
+      clientSecret: 6VBBQj1oFfepfmvkdGFEwnfI
+      accessTokenUri: https://www.googleapis.com/oauth2/v4/token
+      userAuthorizationUri: https://accounts.google.com/o/oauth2/v2/auth
+      clientAuthenticationScheme: form
+      scope:
+        - openid
+        - email
+        - profile
+    resource:
+      userInfoUri: https://www.googleapis.com/oauth2/v3/userinfo
+      preferTokenInfo: true

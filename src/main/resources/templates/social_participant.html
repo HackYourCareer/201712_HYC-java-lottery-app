@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Rejestracja w loterii</title>
+</head>
+<body>
+<h1>Rejestracja w loterii</h1>
+
+{{#participant}}
+
+	<img src="{{icon}}"/>
+	<p>
+		Witaj {{name}}, {{surname}}
+	</p>
+
+
+<form name="participant" action="participant_created" method="post">
+	<input type="hidden" name="name" value="{{name}}" />
+	<input type="hidden" name="surname" value="{{surname}}" />
+	<input type="hidden" name="icon" value="{{icon}}" />
+
+
+	<input type="submit" value="Zarejestruj mnie">
+	<input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+
+</form>
+	{{/participant}}
+
+{{> navigation }}
+</body>
+</html>

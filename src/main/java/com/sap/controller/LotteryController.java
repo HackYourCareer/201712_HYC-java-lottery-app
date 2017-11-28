@@ -5,14 +5,19 @@ import com.sap.repository.ParticipantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -33,6 +38,21 @@ public class LotteryController {
 		return new ModelAndView("participant_form", "participant", new Participant());
 	}
 
+	@GetMapping("/social_participant")
+	private ModelAndView socialParticipant(OAuth2Authentication authentication) {
+		Participant participant = new Participant();
+		Map<String, String> details;
+		details = (Map<String, String>) authentication.getUserAuthentication().getDetails();
+		String givenName = details.get("given_name");
+		String familyName = details.get("family_name");
+		String picture = details.get("picture");
+
+		participant.setName(givenName);
+		participant.setSurname(familyName);
+		participant.setIcon(picture);
+		return new ModelAndView("social_participant", "participant", participant);
+	}
+
 	@PostMapping("/participant_created")
 	private ModelAndView participantCreated(@ModelAttribute Participant participant) {
 		participantRepository.save(participant);
@@ -40,18 +60,11 @@ public class LotteryController {
 	}
 
 	@GetMapping("/participants")
-//	@Secured("ADMIN")
-//	@PreAuthorize("hasAnyRole('ADMIN')")
 	private ModelAndView showParticipants()
 	{
 		final Iterable<Participant> participants = participantRepository.findAll();
 
-		Participant p1 = new Participant(); p1.setName("aaa"); p1.setSurname("aaa");
-		Participant p2 = new Participant(); p2.setName("bbb"); p2.setSurname("bbb");
-		Participant p3 = new Participant(); p3.setName("ccc"); p3.setSurname("ccc");
-		List<Participant> newParticipants = Arrays.asList(p1, p2, p3);
-
-		return new ModelAndView("participants", "participants", newParticipants);
+		return new ModelAndView("participants", "participants", participants);
 	}
 	
 	

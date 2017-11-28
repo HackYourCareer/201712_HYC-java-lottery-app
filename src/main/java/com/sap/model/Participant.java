@@ -8,6 +8,8 @@ import javax.persistence.Id;
 public class Participant {
 	private String name;
 	private String surname;
+	private String icon;
+
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -26,6 +28,14 @@ public class Participant {
 
 	public void setSurname(final String surname) {
 		this.surname = surname;
+	}
+
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
 	}
 
 	public Long getId() {
