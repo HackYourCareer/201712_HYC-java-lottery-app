@@ -40,8 +40,7 @@ public class LotteryController {
 	}
 
 	@GetMapping("/participants")
-//	@Secured("ADMIN")
-//	@PreAuthorize("hasAnyRole('ADMIN')")
+//	@PreAuthorize("hasAnyRole('ADMIN')") //TODO: try ROLE_ADMIN
 	private ModelAndView showParticipants()
 	{
 		final Iterable<Participant> participants = participantRepository.findAll();

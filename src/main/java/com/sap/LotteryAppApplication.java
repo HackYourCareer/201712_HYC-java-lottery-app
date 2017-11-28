@@ -34,7 +34,6 @@ public class LotteryAppApplication {
 
 		@Override
 		public void init(AuthenticationManagerBuilder auth) throws Exception {
-			super.init(auth); //TODO: is it required?
 			auth.inMemoryAuthentication()
 						.withUser("admin")
 						.password("admin")
