@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Wszyscy uczestnicy loterii</title>
+</head>
+<body>
+
+<h1>Wszyscy uczestnicy loterii</h1>
+
+<ol>
+
+{{#participants}}
+	<li>
+		<img src="{{iconUri}}" width="40px" heigth="40px" />
+		{{name}}, {{surname}}
+	</li>
+{{/participants}}
+
+</ol>
+
+{{>navigation}}
+</body>
+</html>

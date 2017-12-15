@@ -1,0 +1,40 @@
+logging.level.org.springframework.security.oauth2.client: debug
+logging.level.org.springframework.security.web.access.ExceptionTranslationFilter: debug
+
+
+#security:
+#  oauth2:
+#    client:
+#      clientId: 233668646673605
+#      clientSecret: 33b17e044ee6a4fa383f46ec6e28ea1d
+#      accessTokenUri: https://graph.facebook.com/oauth/access_token
+#      userAuthorizationUri: https://www.facebook.com/dialog/oauth
+#      tokenName: oauth_token
+#      authenticationScheme: query
+#      clientAuthenticationScheme: form
+#    resource:
+#      userInfoUri: https://graph.facebook.com/me
+
+
+
+
+security:
+  oauth2:
+    client:
+      clientId: 356625709915-hiha3ve66ng4a1nvd35ndeh55mao1okb.apps.googleusercontent.com
+      clientSecret: wX6OGIw3pcxas_js67t44S6l
+      accessTokenUri: https://www.googleapis.com/oauth2/v4/token
+      userAuthorizationUri: https://accounts.google.com/o/oauth2/v2/auth
+      clientAuthenticationScheme: form
+      scope:
+        - openid
+        - email
+        - profile
+    resource:
+      userInfoUri: https://www.googleapis.com/oauth2/v3/userinfo
+      preferTokenInfo: true
+
+
+spring:
+  mustache:
+    expose-request-attributes: true
